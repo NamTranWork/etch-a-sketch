@@ -5,6 +5,18 @@
     gap: 16px;
 }
 
+.colorGenerator {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.currentRGBColorBox {
+    border: 5px solid black;
+    height: 60px;
+    width: 60px;
+}
+
 .sizeButton {
     padding: 10px;
     width: 216px;

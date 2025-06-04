@@ -8,6 +8,26 @@
 </head>
 <body>
     <div class="playground">
+        <h1>Etch-A-Sketch</h1>
+        <h2>RGB Color Generator</h2>
+        <div class="colorGenerator">
+            <div class="rgbSetUp">
+                <label>R Value (between 0 and 255):</label>
+                <input type="range" id="redSlider" value="255" min="0" max="255">
+                <span id="currentRedValue">255</span>
+                <br>
+
+                <label>G Value (between 0 and 255):</label>
+                <input type="range" id="greenSlider" value="255" min="0" max="255">
+                <span id="currentGreenValue">255</span>
+                <br>
+
+                <label>B Value (between 0 and 255):</label>
+                <input type="range" id="blueSlider" value="255" min="0" max="255">
+                <span id="currentBlueValue">255</span>
+            </div>
+            <div class="currentRGBColorBox"></div>
+        </div>
         <button class="sizeButton">Set Grid Size</button>
         <div class="squareGrid"></div>
     </div>
