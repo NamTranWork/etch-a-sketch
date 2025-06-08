@@ -89,3 +89,34 @@ sizeButton.addEventListener("click", () => {
 
     setUpSquares(gridSize, squareGrid);
 })
+
+document.addEventListener("keydown", (event) => {
+    switch (event.key) {
+        case '1':
+            redSlider.value = Math.max(0, parseInt(redSlider.value) - 1);
+            getChosenRedValue();
+            break;
+        case '2':
+            redSlider.value = Math.min(parseInt(redSlider.value) + 1, 255);
+            getChosenRedValue();
+            break;
+        case '3':
+            greenSlider.value = Math.max(0, parseInt(greenSlider.value) - 1);
+            getChosenGreenValue();
+            break;
+        case '4':
+            greenSlider.value = Math.min(parseInt(greenSlider.value) + 1, 255);
+            getChosenGreenValue();
+            break;
+        case '5':
+            blueSlider.value = Math.max(0, parseInt(blueSlider.value) - 1);
+            getChosenBlueValue();
+            break;
+        case '6':
+            blueSlider.value = Math.min(parseInt(blueSlider.value) + 1, 255);   
+            getChosenBlueValue();
+            break;
+        default:
+            break;
+    }
+});
