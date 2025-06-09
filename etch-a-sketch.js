@@ -1,57 +1,66 @@
 function getHexColor(currentSquare) {
-  currentSquare.style.backgroundColor = `rgb(${redSlider.value}, ${greenSlider.value}, ${blueSlider.value})`;
+    if (currentMode === "mousedown") {
+        if (mouseIsDown === true) {
+            currentSquare.style.backgroundColor = `rgb(${redSlider.value}, ${greenSlider.value}, ${blueSlider.value})`;
+        }
+    } else {
+        currentSquare.style.backgroundColor = `rgb(${redSlider.value}, ${greenSlider.value}, ${blueSlider.value})`;
+    }
 }
 
 function getChosenRedValue() {
     currentRedValue.textContent = redSlider.value;
-    updateColorScheme(squareGrid);
+    updateColorScheme();
 }
 
 function getChosenGreenValue() {
     currentGreenValue.textContent = greenSlider.value;
-    updateColorScheme(squareGrid);
+    updateColorScheme();
 }
 
 function getChosenBlueValue() {
     currentBlueValue.textContent = blueSlider.value;
-    updateColorScheme(squareGrid);
+    updateColorScheme();
 }
 
-function setUpSquares (currentSize, grid) {
+function setUpSquares (currentSize) {
     let size = (960 / currentSize) + "px";
 
     for (let i = 0; i < (currentSize ** 2); i++) {
         let square = document.createElement("div");
         square.style.height = size;
         square.style.width = size;
-        square.style.backgroundColor = "white";
+        square.style.backgroundColor = 'rgb(255,255,255)';
+
         square.setAttribute("class", "square");
         square.setAttribute("id", i);
+        square._colorHandler = () => getHexColor(square);
+        square.addEventListener("mouseover", square._colorHandler);
 
-        square.addEventListener("mouseover", () => getHexColor(square));
-        grid.appendChild(square);
+        squareGrid.appendChild(square);
     }
 }
 
-function updateColorScheme (grid) {
-    let squares = Array.from(grid.querySelectorAll(".square"))
+function updateColorScheme () {
+    let squares = Array.from(squareGrid.querySelectorAll(".square"));
     for (let square of squares) {
         let currentSquareColor = square.style.backgroundColor;
-        square.removeEventListener("mouseover", () => getHexColor(square));
-        square.addEventListener("mouseover", () => getHexColor(square));
+        square.removeEventListener("mouseover", square._colorHandler);
+        square.addEventListener("mouseover", square._colorHandler);
         square.style.backgroundColor = currentSquareColor;
     }
     currentColorBox.style.backgroundColor = `rgb(${redSlider.value}, ${greenSlider.value}, ${blueSlider.value})`;
 }
 
-function deleteSquares (grid) {
-    while (grid.lastElementChild) {
-        grid.removeChild(grid.lastElementChild);
+function deleteSquares () {
+    while (squareGrid.lastElementChild) {
+        squareGrid.removeChild(squareGrid.lastElementChild);
     }
 }
 
 const squareGrid = document.querySelector(".squareGrid");
-const sizeButton = document.querySelector(".sizeButton");
+const sizeButton = document.querySelector("#sizeButton");
+const actionButton = document.querySelector("#actionButton");
 const currentColorBox = document.querySelector(".currentRGBColorBox");
 
 let redSlider = document.querySelector("#redSlider");
@@ -60,17 +69,19 @@ let blueSlider = document.querySelector("#blueSlider");
 let currentRedValue = document.querySelector("#currentRedValue");
 let currentGreenValue = document.querySelector("#currentGreenValue");
 let currentBlueValue = document.querySelector("#currentBlueValue");
+let currentMode = "mouseover";
+let mouseIsDown = false;
 let gridSize = 16;
 
 redSlider.addEventListener("input", getChosenRedValue);
 greenSlider.addEventListener("input", getChosenGreenValue);
 blueSlider.addEventListener("input", getChosenBlueValue);
 
-setUpSquares(gridSize, squareGrid);
-updateColorScheme(squareGrid);
+setUpSquares(gridSize);
+updateColorScheme();
 
 sizeButton.addEventListener("click", () => {
-    deleteSquares(squareGrid);
+    deleteSquares();
     gridSize = +(prompt("Enter a grid size (Max 100)"));
 
     while (isNaN(gridSize) || (typeof gridSize === "number" && (gridSize < 1 || gridSize > 100))) {
@@ -87,8 +98,23 @@ sizeButton.addEventListener("click", () => {
         gridSize = +(prompt("Enter a grid size (Max 100)"));
     }
 
-    setUpSquares(gridSize, squareGrid);
+    setUpSquares(gridSize);
 })
+
+actionButton.addEventListener("click", () => {
+    let oldMode = currentMode;
+    if (currentMode === "mouseover") {
+        currentMode = "mousedown";
+        actionButton.textContent = "Hover Mode";
+    }
+    else if (currentMode === "mousedown") {
+        currentMode = "mouseover";
+        actionButton.textContent = "Mousedown Mode";
+    }
+})
+
+document.addEventListener("mousedown", () => mouseIsDown = true);
+document.addEventListener("mouseup", () => mouseIsDown = false);
 
 document.addEventListener("keydown", (event) => {
     switch (event.key) {
