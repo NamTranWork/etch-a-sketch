@@ -8,31 +8,62 @@
 </head>
 <body>
     <div class="playground">
-        <h1>Etch-A-Sketch</h1>
-        <h2>RGB Color Generator</h2>
-        <div class="colorGenerator">
-            <div class="rgbSetUp">
-                <label>R Value (between 0 and 255):</label>
-                <input type="range" id="redSlider" value="255" min="0" max="255">
-                <span id="currentRedValue">255</span>
-                <br>
-
-                <label>G Value (between 0 and 255):</label>
-                <input type="range" id="greenSlider" value="255" min="0" max="255">
-                <span id="currentGreenValue">255</span>
-                <br>
-
-                <label>B Value (between 0 and 255):</label>
-                <input type="range" id="blueSlider" value="255" min="0" max="255">
-                <span id="currentBlueValue">255</span>
+        <p id="titleText">Nam's Etch-A-Sketch</p>
+        <div class="explanation">
+            <h2>INSTRUCTIONS</h2>
+            <p>
+                Use the RGB sliders to create a custom color. As you move the sliders, the color in the small box will update to show your selection.
+                When you hover or click on the grid (depending on the current mode), each square will be colored with your selected color.
+            </p>
+            <p>
+                You can toggle between <strong>Mousedown Mode</strong> and <strong>Hover Mode</strong> using the button labeled "Mousedown Mode". 
+                You can also switch to the eraser tool to clear squares. Adjust the grid size any time with the "Set Grid Size" button.
+            </p>
+        </div>
+        <div class="infoBoard">
+            <div>
+                <span class="infoLabel">GRID SIZE: </span>
+                <span class="info" id="gridInfo"></span>
             </div>
-            <div class="currentRGBColorBox"></div>
+            <div>
+                <span class="infoLabel">CURRENT MODE: </span>
+                <span class="info" id="actionInfo"></span>
+            </div>
+            <div>
+                <span class="infoLabel">CURRENT TOOL: </span>
+                <span class="info" id="toolInfo"></span>
+            </div>
         </div>
         <div class="buttons">
             <button class="button" id="sizeButton">Set Grid Size</button>
             <button class="button" id="actionButton">Mousedown Mode</button>
+            <button class="button" id="toolButton">Eraser Tool</button>
+        </div>
+        <div class="colorGenerator">
+            <h2>RGB Color Generator</h2>
+            <div class="rgbSetUp">
+                <div class="sliderRow">
+                    <span class="redText">R VALUE (0 - 255):</span>
+                    <input type="range" id="redSlider" value="255" min="0" max="255">
+                    <span class="redText" id="currentRedValue">255</span>
+                </div>
+
+                <div class="sliderRow">
+                    <span class="greenText">G VALUE (0 - 255):</span>
+                    <input type="range" id="greenSlider" value="255" min="0" max="255">
+                    <span class="greenText" id="currentGreenValue">255</span>
+                </div>
+
+                <div class="sliderRow">
+                    <span class="blueText">B VALUE (0 - 255):</span>
+                    <input type="range" id="blueSlider" value="255" min="0" max="255">
+                    <span class="blueText" id="currentBlueValue">255</span>
+                </div>
+            </div>
+            <div class="currentRGBColorBox"></div>
         </div>
         <div class="squareGrid"></div>
+
     </div>
     
     <script src="etch-a-sketch.js"></script>

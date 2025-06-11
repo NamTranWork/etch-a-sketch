@@ -1,14 +1,82 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+#titleText {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 10px 0;
+    color: #2c3e50;
+}
+
 .playground {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
+    gap: 8px;
+}
+
+.infoBoard {
+    border: 5px solid black;
+    border-radius: 12px;
+    padding: 10px;
+    background-color: #ecf0f1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.infoLabel {
+    font-weight: bold;
+    font-size: large;
+}
+
+.info {
+    font-size: large;
 }
 
 .colorGenerator {
+    border: 3px solid #2c3e50;
+    border-radius: 12px;
+    background-color: #ecf0f1;
+    padding: 20px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     gap: 14px;
+    align-items: center;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.colorGenerator h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #34495e;
+}
+
+.sliderRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.redText {
+    color: red;
+    font-weight: bolder;
+}
+
+.greenText {
+    color: green;
+    font-weight: bolder;
+}
+
+.blueText {
+    color: blue;
+    font-weight: bolder;
 }
 
 .currentRGBColorBox {
@@ -17,17 +85,59 @@
     width: 60px;
 }
 
+.buttons {
+    border: 3px solid #2c3e50;
+    border-radius: 12px;
+    padding: 15px;
+    background-color: #ecf0f1;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 600px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 .button {
-    padding: 10px;
-    width: 216px;
-    font-weight: bold;
-    font-size: large;
+    background-color: #3498db;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
 }
 
 .squareGrid {
     display: flex;
     flex-wrap: wrap;
-    border: 2px solid black;
+    border: 5px solid black;
+    border-radius: 8px;
     height: 960px;
     width: 960px;
+}
+
+.explanation {
+    max-width: 800px;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 2px solid #bdc3c7;
+    border-radius: 10px;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #2c3e50;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.explanation h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #34495e;
+}
+
+.explanation strong {
+    color: #2980b9;
 }
